@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.ReplyDetail.ReplyDetailMapper">
+	<select id="getReplyDetailCount" resultType="int">
+		select count(*) from reply_detail where invid=#{uid}
+	</select>
+	
+	<select id="getReplyDetailList" resultType="replyDetail">
+		select * from reply_detail where invid=#{uid}
+			 LIMIT #{totalPageCount},#{pageSize}
+	</select>
+	
+	<insert id="addReplyDetail" parameterType="replyDetail">
+		INSERT INTO `reply_detail` (invid,content,author,createdate) 
+		VALUES
+		(
+			#{invid},#{content},#{author},NOW()
+		)
+	</insert>
+</mapper>
